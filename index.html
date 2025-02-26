@@ -46,6 +46,28 @@
         audio {
             display: none;
         }
+        .cherry-blossom {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://pngimg.com/uploads/cherry_blossom/cherry_blossom_PNG49.png') no-repeat center;
+            background-size: cover;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-10vh) rotate(0deg); }
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: floatUp 3s linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(100vh) scale(1); opacity: 1; }
+            to { transform: translateY(-10vh) scale(2); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -56,5 +78,27 @@
     <audio autoplay loop>
         <source src="your-audio-file.mp3" type="audio/mpeg">
     </audio>
+    <script>
+        function createCherryBlossom() {
+            const blossom = document.createElement('div');
+            blossom.classList.add('cherry-blossom');
+            blossom.style.left = Math.random() * 100 + 'vw';
+            blossom.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(blossom);
+            setTimeout(() => blossom.remove(), 5000);
+        }
+        setInterval(createCherryBlossom, 300);
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
+    </script>
 </body>
 </html>
